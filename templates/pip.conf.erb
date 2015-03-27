@@ -1,0 +1,8 @@
+[global]
+index-url = <%= @index_url %>
+<% if trusted_hosts.length > 0 -%>
+trusted-host =
+<% @trusted_hosts.each do |trusted_host| -%>
+  <%= trusted_host %>
+<% end -%>
+<% end -%>
