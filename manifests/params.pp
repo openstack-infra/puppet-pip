@@ -3,6 +3,8 @@
 # This class holds parameters that need to be
 # accessed by other classes.
 class pip::params {
+  $index_url = ''
+  $trusted_hosts = []
   case $::osfamily {
     'RedHat': {
       $python_devel_package = 'python-devel'
