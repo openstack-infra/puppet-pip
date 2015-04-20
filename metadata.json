@@ -1,5 +1,5 @@
 {
-  "name": "openstackci-pip",
+  "name": "openstackinfra-pip",
   "version": "0.0.1",
   "author": "OpenStack CI",
   "summary": "Puppet module for PIP",
