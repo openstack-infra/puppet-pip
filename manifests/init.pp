@@ -4,6 +4,7 @@ class pip (
   $index_url = 'https://pypi.python.org/simple',
   $trusted_hosts = [],
   $manage_pip_conf = false,
+  $optional_settings = {},
 ) {
   include pip::params
   validate_array($trusted_hosts)
