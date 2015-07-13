@@ -6,3 +6,7 @@ trusted-host =
   <%= trusted_host %>
 <% end -%>
 <% end -%>
+
+<% @optional_settings.keys.sort.each do |setting| -%>
+<%= setting -%> = <%= optional_settings[setting] %>
+<% end -%>
