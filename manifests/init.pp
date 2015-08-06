@@ -5,7 +5,7 @@ class pip (
   $trusted_hosts = [],
   $manage_pip_conf = false,
 ) {
-  include pip::params
+  include ::pip::params
   validate_array($trusted_hosts)
 
   package { $::pip::params::python_devel_package:

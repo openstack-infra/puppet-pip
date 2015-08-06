@@ -1,7 +1,7 @@
 # Class: pip
 #
 class pip::python3 {
-  include pip::params
+  include ::pip::params
 
   package { $::pip::params::python3_devel_package:
     ensure => present,
