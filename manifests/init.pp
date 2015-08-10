@@ -12,6 +12,11 @@ class pip (
     ensure => present,
   }
 
+  exec { 'download-pip':
+    command => '/usr/bin/curl https://bootstrap.pypa.io/get-pip.py | /usr/bin/python',
+    creates => '/usr/local/bin/pip'
+  }
+
   if $manage_pip_conf {
     file { '/etc/pip.conf':
       owner   => 'root',
