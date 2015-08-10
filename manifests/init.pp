@@ -12,6 +12,10 @@ class pip (
     ensure => present,
   }
 
+  package { $::pip::params::python_pip_package:
+    ensure => present,
+  }
+
   if $manage_pip_conf {
     file { '/etc/pip.conf':
       owner   => 'root',
