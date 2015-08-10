@@ -12,6 +12,18 @@ class pip (
     ensure => present,
   }
 
+  if ! defined(Package['curl']) {
+    package { 'curl':
+      ensure => installed
+    }
+  }
+
+  exec { 'download-pip':
+    command => "/usr/bin/curl ${::pip::params::get_pip_location} | /usr/bin/python",
+    creates => '/usr/local/bin/pip',
+    require => Package['curl']
+  }
+
   if $manage_pip_conf {
     file { '/etc/pip.conf':
       owner   => 'root',
