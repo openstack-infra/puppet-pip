@@ -5,7 +5,7 @@
 class pip::params {
   case $::osfamily {
     'RedHat': {
-      $python_devel_package = 'python-devel'
+      $python_devel_package  = 'python-devel'
       $python3_devel_package = 'python3-devel'
       $python3_pip_package   = 'python3-pip'
     }
