@@ -13,9 +13,14 @@ class pip (
     ensure => present,
   }
 
+  package { 'python-pip':
+    ensure => absent,
+  }
+
   exec { 'download-pip':
     command => "/usr/bin/curl ${::pip::params::get_pip_location} | /usr/bin/python",
-    creates => '/usr/local/bin/pip',
+    creates => "${::pip::params::pip_installation_folder}/pip",
+    require => Package['python-pip'],
   }
 
   if $manage_pip_conf {
