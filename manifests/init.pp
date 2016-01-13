@@ -2,6 +2,7 @@
 #
 class pip (
   $index_url = 'https://pypi.python.org/simple',
+  $extra_index_url = '',
   $trusted_hosts = [],
   $manage_pip_conf = false,
   $optional_settings = {},
