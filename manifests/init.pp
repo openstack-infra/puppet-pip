@@ -1,10 +1,10 @@
 # Class: pip
 #
 class pip (
-  $index_url = 'https://pypi.python.org/simple',
-  $trusted_hosts = [],
-  $manage_pip_conf = false,
+  $index_url         = 'https://pypi.python.org/simple',
+  $manage_pip_conf   = false,
   $optional_settings = {},
+  $trusted_hosts     = [],
 ) {
   include ::pip::params
   validate_array($trusted_hosts)
