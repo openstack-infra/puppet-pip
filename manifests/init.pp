@@ -15,7 +15,7 @@ class pip (
 
   exec { 'download-pip':
     command => "/usr/bin/curl ${::pip::params::get_pip_location} | /usr/bin/python",
-    creates => '/usr/local/bin/pip',
+    creates => $::pip::params::get_pip_path,
   }
 
   if $manage_pip_conf {
