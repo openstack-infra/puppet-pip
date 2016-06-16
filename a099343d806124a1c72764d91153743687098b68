@@ -1,0 +1,10 @@
+Code-Review+2: Colleen Murphy <colleen@gazlene.net>
+Workflow+1: Colleen Murphy <colleen@gazlene.net>
+Code-Review+2: Monty Taylor <mordred@inaugust.com>
+Code-Review+1: Philip Marc Schwartz <pschwar@linux.vnet.ibm.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Thu, 16 Jun 2016 18:02:08 +0000
+Reviewed-on: https://review.openstack.org/330657
+Project: openstack-infra/puppet-pip
+Branch: refs/heads/master
