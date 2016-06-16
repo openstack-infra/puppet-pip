@@ -7,6 +7,8 @@ Puppet::Type.type(:package).provide(:openstack_pip, :parent => :pip) do
 
   desc "Python packages via `pip` with mirrors."
 
+  has_feature :installable, :uninstallable, :upgradeable, :versionable
+
   commands :pip => 'pip'
 
   def self.outdated
