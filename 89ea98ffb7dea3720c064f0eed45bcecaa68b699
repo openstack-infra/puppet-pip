@@ -1,0 +1,11 @@
+Code-Review+2: Spencer Krum <nibz@spencerkrum.com>
+Code-Review+1: K Jonathan Harker <code@gentlydownthe.net>
+Code-Review+2: yolanda.robla <yroblamo@redhat.com>
+Code-Review+2: Jeremy Stanley <fungi@yuggoth.org>
+Workflow+1: Jeremy Stanley <fungi@yuggoth.org>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Tue, 28 Jun 2016 17:01:19 +0000
+Reviewed-on: https://review.openstack.org/332793
+Project: openstack-infra/puppet-pip
+Branch: refs/heads/master
