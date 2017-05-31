@@ -11,18 +11,21 @@ class pip::params {
       $python3_devel_package = 'python3-devel'
       $python3_pip_package   = 'python3-pip'
       $get_pip_path          = '/bin/pip'
+      $get_pip3_path          = '/bin/pip3'
     }
     'Suse': {
       $python_devel_package  = 'python-devel'
       $python3_devel_package = 'python3-devel'
       $python3_pip_package   = 'python3-pip'
       $get_pip_path          = '/usr/bin/pip'
+      $get_pip3_path          = '/usr/bin/pip3'
     }
     'Debian': {
       $python_devel_package  = 'python-all-dev'
       $python3_devel_package = 'python3-all-dev'
       $python3_pip_package   = 'python3-pip'
       $get_pip_path          = '/usr/local/bin/pip'
+      $get_pip3_path          = '/usr/local/bin/pip3'
     }
     default: {
       fail("Unsupported osfamily: ${::osfamily} The 'pip' module only supports osfamily Debian, RedHat or SUSE.")

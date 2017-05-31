@@ -13,6 +13,12 @@ class pip (
     ensure => present,
   }
 
+  exec { 'download-pip3':
+    command => "/usr/bin/curl ${::pip::params::get_pip_location} | /usr/bin/python3",
+    creates => $::pip::params::get_pip3_path,
+    before  => Exec['download-pip'],
+  }
+
   exec { 'download-pip':
     command => "/usr/bin/curl ${::pip::params::get_pip_location} | /usr/bin/python",
     creates => $::pip::params::get_pip_path,
