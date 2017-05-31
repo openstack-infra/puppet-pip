@@ -13,9 +13,25 @@ class pip (
     ensure => present,
   }
 
+  if $::operatingsystem != 'CentOS' {
+      exec { 'download-pip3':
+        command => "/usr/bin/curl ${::pip::params::get_pip_location} | /usr/bin/python3 - -U --force-reinstall",
+        creates => $::pip::params::get_pip3_path,
+        before  => Exec['download-pip'],
+        notify  => Exec[$::pip::params::get_pip_path]
+    }
+  }
+
   exec { 'download-pip':
-    command => "/usr/bin/curl ${::pip::params::get_pip_location} | /usr/bin/python",
-    creates => $::pip::params::get_pip_path,
+    command => "/usr/bin/curl ${::pip::params::get_pip_location} | /usr/bin/python - -U --force-reinstall",
+    creates => $::pip::params::get_pip2_path,
+    notify  => Exec[$::pip::params::get_pip_path]
+  }
+
+  # NOTE(pabelanger): Default to pip2 for backwards compat
+  exec { $::pip::params::get_pip_path:
+    command     => "ln -sf ${::pip::params::get_pip_path} ${::pip::params::get_pip2_path}"
+    refreshonly => true,
   }
 
   if $manage_pip_conf {
