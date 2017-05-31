@@ -1,7 +1,6 @@
 include pip
 
 $packages = [
-  'Babel',
   'bandersnatch',
   'elasticsearch-curator',
   'gear',
