@@ -2,4 +2,4 @@
 
 ## Overview
 
-Configures PIP.
+Configures Pip
