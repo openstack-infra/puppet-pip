@@ -30,9 +30,20 @@ class pip (
 
   # NOTE(pabelanger): Default to pip2 for backwards compat
   exec { $::pip::params::get_pip_path:
-    command     => "ln -sf ${::pip::params::get_pip_path} ${::pip::params::get_pip2_path}",
+    command     => "ln -sf ${::pip::params::get_pip_path2} ${::pip::params::get_pip_path}",
     path        => '/usr/bin:/bin/',
     refreshonly => true,
+  }
+
+  # NOTE(pabelanger): We need to unlink pip2 because, it just symlinks to pip.
+  # And it is possible that pip is currently python3. This should then cause
+  # download-pip to run again. And default pip to python2 again.
+  # This code will be removed once pip has been switched back to python2.
+  exec { "unlink pip2":
+    command => "unlink ${::pip::params::get_pip_path2}",
+    path    => '/usr/bin:/bin/',
+    onlyif  => "test -L ${::pip::params::get_pip_path2}",
+    notify  => Exec['download-pip'],
   }
 
   if $manage_pip_conf {
