@@ -30,7 +30,7 @@ class pip (
 
   # NOTE(pabelanger): Default to pip2 for backwards compat
   exec { $::pip::params::get_pip_path:
-    command     => "ln -sf ${::pip::params::get_pip_path} ${::pip::params::get_pip2_path}",
+    command     => "ln -sf ${::pip::params::get_pip_path2} ${::pip::params::get_pip_path}",
     path        => '/usr/bin:/bin/',
     refreshonly => true,
   }
