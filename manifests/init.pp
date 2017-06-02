@@ -17,6 +17,7 @@ class pip (
       exec { 'download-pip3':
         command => "/usr/bin/curl ${::pip::params::get_pip_location} | /usr/bin/python3 - -U --force-reinstall",
         creates => $::pip::params::get_pip3_path,
+        onlyif  => 'test -e /usr/bin/python3',
         before  => Exec['download-pip'],
         notify  => Exec[$::pip::params::get_pip_path]
     }
