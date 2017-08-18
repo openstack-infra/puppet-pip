@@ -1,4 +1,4 @@
-require 'spec_helper_acceptance'
+require 'puppet-openstack_infra_spec_helper/spec_helper_acceptance'
 
 describe 'custom pip provider' do
 
