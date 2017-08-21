@@ -7,17 +7,18 @@ describe 'custom pip provider' do
   context 'using mirrors' do
 
     before :all do
-      # Set up pip.conf for testers playing at home
-      pip_conf =<<EOF
-[global]
-timeout = 60
-index-url = http://mirror.dfw.rax.openstack.org/pypi/simple
-trusted-host = mirror.dfw.rax.openstack.org
-extra-index-url = http://mirror.dfw.rax.openstack.org/wheel/ubuntu-14.04-x86_64
-EOF
-      shell("if [ ! -f /etc/pip.conf ] ; then echo '#{pip_conf}' > /etc/pip.conf ; fi")
-      # Block pypi.python.org so we know the mirror is working
-      shell("iptables -A OUTPUT -d pypi.python.org -j DROP")
+#      # Set up pip.conf for testers playing at home
+#      pip_conf =<<EOF
+#[global]
+#timeout = 60
+#index-url = http://mirror.dfw.rax.openstack.org/pypi/simple
+#trusted-host = mirror.dfw.rax.openstack.org
+#extra-index-url = http://mirror.dfw.rax.openstack.org/wheel/ubuntu-16.04-x86_64
+#EOF
+#      shell("if [ ! -f /etc/pip.conf ] ; then echo '#{pip_conf}' > /etc/pip.conf ; fi")
+#      # Block pypi.python.org so we know the mirror is working
+#      shell("iptables -A OUTPUT -d pypi.python.org -j DROP")
+       shell("rm -f /etc/pip.conf")
     end
 
 
