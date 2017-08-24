@@ -12,6 +12,11 @@ class pip (
   package { $::pip::params::python_devel_package:
     ensure => present,
   }
+  if !defined(Package['curl']) {
+    package { 'curl':
+      ensure => present,
+    }
+  }
 
   if $::operatingsystem != 'CentOS' {
       exec { 'download-pip3':
@@ -19,6 +24,7 @@ class pip (
         creates => $::pip::params::get_pip3_path,
         before  => Exec['download-pip'],
         notify  => Exec[$::pip::params::get_pip_path]
+        require => Package['curl'],
     }
   }
 
@@ -26,6 +32,7 @@ class pip (
     command => "/usr/bin/curl ${::pip::params::get_pip_location} | /usr/bin/python - -U --force-reinstall",
     creates => $::pip::params::get_pip2_path,
     notify  => Exec[$::pip::params::get_pip_path]
+    require => Package['curl'],
   }
 
   # NOTE(pabelanger): Default to pip2 for backwards compat
