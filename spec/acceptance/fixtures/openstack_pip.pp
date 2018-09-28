@@ -2,6 +2,7 @@ include pip
 
 $packages = [
   'shade',
+  'diskimage-builder',
 ]
 package { $packages:
   ensure   => latest,
