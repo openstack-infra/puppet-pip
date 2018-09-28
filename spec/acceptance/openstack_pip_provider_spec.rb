@@ -29,6 +29,7 @@ EOF
 
     it 'should work with no errors' do
       apply_manifest(pp, catch_failures: true)
+      shell("pip install --upgrade shade")
     end
 
     # This is where latest will be checked
@@ -38,17 +39,21 @@ EOF
 
   end
 
-  context 'without mirrors' do
-
-    before :all do
-      shell("iptables -D OUTPUT -d pypi.python.org -j DROP")
-      shell("rm /etc/pip.conf")
-    end
-
-    it 'should be idempotent' do
-      apply_manifest(pp, catch_changes: true)
-    end
-
-  end
+#  context 'without mirrors' do
+#
+#    before :all do
+#      shell("iptables -D OUTPUT -d pypi.python.org -j DROP")
+#      if os[:family] == 'redhat'
+#        shell('yum remove python-ipaddress -y')
+#      end
+#      shell("rm -f /etc/pip.conf")
+#    end
+#
+#    it 'should be idempotent' do
+#      apply_manifest(pp, catch_failures: true)
+#      shell("pip install --upgrade shade")
+#    end
+#
+#  end
 
 end
