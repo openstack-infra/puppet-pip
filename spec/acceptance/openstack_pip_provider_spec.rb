@@ -8,6 +8,7 @@ describe 'custom pip provider' do
 
     before :all do
       # Set up pip.conf for testers playing at home
+      shell("cat /etc/pip.conf")
       pip_conf =<<EOF
 [global]
 timeout = 60
@@ -16,6 +17,7 @@ trusted-host = mirror.dfw.rax.openstack.org
 extra-index-url = http://mirror.dfw.rax.openstack.org/wheel/ubuntu-14.04-x86_64
 EOF
       shell("if [ ! -f /etc/pip.conf ] ; then echo '#{pip_conf}' > /etc/pip.conf ; fi")
+      shell("cat /etc/pip.conf")
       # Block pypi.python.org so we know the mirror is working
       shell("iptables -A OUTPUT -d pypi.python.org -j DROP")
 
@@ -29,6 +31,8 @@ EOF
 
     it 'should work with no errors' do
       apply_manifest(pp, catch_failures: true)
+      shell("pip install -U 'pip<18'")
+      shell("pip install --verbose shade")
     end
 
     # This is where latest will be checked
@@ -38,17 +42,21 @@ EOF
 
   end
 
-  context 'without mirrors' do
-
-    before :all do
-      shell("iptables -D OUTPUT -d pypi.python.org -j DROP")
-      shell("rm /etc/pip.conf")
-    end
-
-    it 'should be idempotent' do
-      apply_manifest(pp, catch_changes: true)
-    end
-
-  end
+#  context 'without mirrors' do
+#
+#    before :all do
+#      shell("iptables -D OUTPUT -d pypi.python.org -j DROP")
+#      if os[:family] == 'redhat'
+#        shell('yum remove python-ipaddress -y')
+#      end
+#      shell("rm -f /etc/pip.conf")
+#    end
+#
+#    it 'should be idempotent' do
+#      apply_manifest(pp, catch_failures: true)
+#      shell("pip install --upgrade shade")
+#    end
+#
+#  end
 
 end
