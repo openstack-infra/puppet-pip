@@ -2,6 +2,7 @@ include pip
 
 $packages = [
   'shade',
+  'jeepyb',
 ]
 package { $packages:
   ensure   => latest,
