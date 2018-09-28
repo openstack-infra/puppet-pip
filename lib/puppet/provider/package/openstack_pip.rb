@@ -20,7 +20,12 @@ Puppet::Type.type(:package).provide(:openstack_pip, :parent => :pip) do
     if outdated =~ /#{@resource[:name]}/
       latest = outdated.split("\n").select { |line|
         line =~ /#{@resource[:name]}/
-      }.first.match('Latest: ([^\s)]*)')[1]
+      }.first
+      _latest = latest.match('Latest: ([^\s)]*)')
+      if _latest
+        latest = _latest[1]
+      else
+        latest = latest.split(' ')[2]
     else
       package_info = lazy_pip(['show', @resource[:name]])
       current = package_info.split("\n").select { |line|
