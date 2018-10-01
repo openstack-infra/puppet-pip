@@ -1,0 +1,10 @@
+- job:
+    name: puppet-pip-debugging
+    nodeset: centos-7
+    run: playbooks/test.yaml
+
+- project:
+  name: openstack-infra/puppet-pip
+  check:
+    jobs:
+      - puppet-pip-debugging
