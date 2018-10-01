@@ -1,0 +1,4 @@
+- hosts: all
+  tasks:
+    - name: debugging
+      script: "{{ zuul.project.src_dir }}/test-pip.sh"
