@@ -1,0 +1,6 @@
+- hosts: all
+  tasks:
+    - name: debugging
+      command: test-pip.sh
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
