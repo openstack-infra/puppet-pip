@@ -13,7 +13,9 @@ describe 'custom pip provider' do
 timeout = 60
 index-url = http://mirror.dfw.rax.openstack.org/pypi/simple
 trusted-host = mirror.dfw.rax.openstack.org
-extra-index-url = http://mirror.dfw.rax.openstack.org/wheel/ubuntu-14.04-x86_64
+extra-index-url =
+    http://mirror.dfw.rax.openstack.org/wheel/ubuntu-14.04-x86_64
+    https://pypi.org/simple/
 EOF
       shell("if [ ! -f /etc/pip.conf ] ; then echo '#{pip_conf}' > /etc/pip.conf ; fi")
       # Block pypi.python.org so we know the mirror is working
