@@ -16,6 +16,7 @@ trusted-host = mirror.dfw.rax.openstack.org
 extra-index-url = http://mirror.dfw.rax.openstack.org/wheel/ubuntu-14.04-x86_64
 EOF
       shell("if [ ! -f /etc/pip.conf ] ; then echo '#{pip_conf}' > /etc/pip.conf ; fi")
+      shell("iptables -S")
       # Block pypi.python.org so we know the mirror is working
       shell("iptables -A OUTPUT -d pypi.python.org -j DROP")
 
@@ -41,6 +42,7 @@ EOF
   context 'without mirrors' do
 
     before :all do
+      shell("iptables -S")
       shell("iptables -D OUTPUT -d pypi.python.org -j DROP")
       shell("rm /etc/pip.conf")
     end
