@@ -16,8 +16,10 @@ trusted-host = mirror.dfw.rax.openstack.org
 extra-index-url = http://mirror.dfw.rax.openstack.org/wheel/ubuntu-14.04-x86_64
 EOF
       shell("if [ ! -f /etc/pip.conf ] ; then echo '#{pip_conf}' > /etc/pip.conf ; fi")
-      # Block pypi.python.org so we know the mirror is working
-      shell("iptables -A OUTPUT -d pypi.python.org -j DROP")
+      shell("iptables -S")
+      # Block pypi.org so we know the mirror is working
+      shell("iptables -A OUTPUT -d pypi.org -j DROP")
+      shell("iptables -S")
 
       # Remove the python-ipaddress distro package so that pip 10 won't fail to
       # install shade
@@ -41,7 +43,9 @@ EOF
   context 'without mirrors' do
 
     before :all do
-      shell("iptables -D OUTPUT -d pypi.python.org -j DROP")
+      shell("iptables -S")
+      shell("iptables -D OUTPUT -d pypi.org -j DROP")
+      shell("iptables -S")
       shell("rm /etc/pip.conf")
     end
 
